@@ -13,7 +13,8 @@ TagManager:
   - ExitRed
   - ExitYellow
   - ExitBlue
-  - SwitchSistem
+  - TrackingObject
+  - Actors
   layers:
   - Default
   - TransparentFX

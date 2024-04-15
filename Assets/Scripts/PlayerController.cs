@@ -44,24 +44,24 @@ public class PlayerController : MonoBehaviour
             isGrounded = IsGrounded();
             if (Input.GetKey(KeyCode.A))
             {
-                rb.AddForce(-Vector3.right * speed);
+                rb.AddForce(-Vector3.right * speed * Time.deltaTime);
             }
             // Control right movement
             if (Input.GetKey(KeyCode.D))
             {
 
-                rb.AddForce(Vector3.right * speed);
+                rb.AddForce(Vector3.right * speed * Time.deltaTime);
             }
 
             if (rb.velocity.magnitude > maxSpeed)
             {
-                rb.velocity = rb.velocity.normalized * maxSpeed;
+                rb.velocity = rb.velocity.normalized * maxSpeed * Time.deltaTime;
             }
 
             // ControlJumpm
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
-                rb.velocity = (Vector3.up * jumpForce) ;
+                rb.velocity = (Vector3.up * jumpForce * Time.deltaTime) ;
             }
             if (!isGrounded)
             {

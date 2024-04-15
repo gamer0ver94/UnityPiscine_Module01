@@ -25,7 +25,8 @@ public class TeleportScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collider)
     {
-        float destinationSize = objectDestination.GetComponent<Renderer>().transform.localScale.y / 2;
+        float destinationSize = objectDestination.GetComponent<BoxCollider>().size.y / 2 + 1;
+        
         float colliderSize = collider.collider.bounds.size.y / 2;
         if (teleportReady){
             GetComponent<BoxCollider>().enabled = false;

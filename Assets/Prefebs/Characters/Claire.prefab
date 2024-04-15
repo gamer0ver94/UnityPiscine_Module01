@@ -121,12 +121,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb072bbaad737044ab176e9c61d6590c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  maxSpeed: 4
-  jumpForce: 5
+  speed: 500
+  maxSpeed: 500
+  jumpForce: 550
   isPlayable: 0
   lowestJump: 0
-  rayDistance: 1.19
+  rayDistance: 0.23
 --- !u!54 &9198729168384940673
 Rigidbody:
   m_ObjectHideFlags: 0

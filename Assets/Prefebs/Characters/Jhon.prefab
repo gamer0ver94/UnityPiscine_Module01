@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9106104972825046405}
   - component: {fileID: 3543511780327951456}
   - component: {fileID: 2168451966703873617}
-  - component: {fileID: 8844149963210889139}
+  - component: {fileID: 5655650813077101121}
   m_Layer: 8
   m_Name: Jhon
   m_TagString: Jhon
@@ -136,7 +136,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
---- !u!114 &8844149963210889139
+--- !u!114 &5655650813077101121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb072bbaad737044ab176e9c61d6590c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  maxSpeed: 7
-  jumpForce: 10
-  isPlayable: 0
+  speed: 700
+  maxSpeed: 700
+  jumpForce: 1000
+  isPlayable: 1
   lowestJump: 1
-  rayDistance: 1.51
+  rayDistance: 0.35
