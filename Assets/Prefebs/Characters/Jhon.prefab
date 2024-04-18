@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  maxSpeed: 22
-  jumpForce: 10
+  maxSpeed: 10
+  jumpForce: 700
   isPlayable: 1
   lowestJump: 1
-  rayDistance: 0.35
+  rayDistance: 1.11

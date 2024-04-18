@@ -123,8 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalMove: 0
   horizontalMove: 1
-  rightDistance: 1.15
-  leftDistance: 6.19
+  rightDistance: 2.32
+  leftDistance: 1.49
   speed: 4.09
 --- !u!54 &6072775989977329163
 Rigidbody:

@@ -45,8 +45,15 @@ public class PlayerController : MonoBehaviour
         if (isPlayable)
         {
             isGrounded = IsGrounded();
-            moveLeft = Input.GetKey(KeyCode.A);
-            moveRight = Input.GetKey(KeyCode.D);
+            if (rb.velocity.magnitude > maxSpeed)
+            {
+                moveLeft = false;
+                moveRight = false;
+            }
+            else{
+                moveLeft = Input.GetKey(KeyCode.A);
+                moveRight = Input.GetKey(KeyCode.D);
+            }
         }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -73,21 +80,29 @@ public class PlayerController : MonoBehaviour
             // Control right movement
             if (moveRight)
             {
-
                 rb.AddForce(Vector3.right * speed);
             }
             // ControlJumpm
             if (isJumping)
             {
-                rb.velocity = (Vector3.up * jumpForce);
+                rb.AddForce(Vector3.up * jumpForce);
                 isJumping = false;
             }
-            if (rb.velocity.magnitude > maxSpeed)
-            {
-                rb.velocity = rb.velocity.normalized * maxSpeed;
-            }
+            // if (rb.velocity.magnitude > maxSpeed)
+            // {
+            //     rb.velocity = rb.velocity.normalized * maxSpeed;
+            // }
+        }
+        else{
+            isJumping = false;
         }
         
+    }
+
+    void OnCollisionEnter(Collision collider){
+        if (collider.gameObject.tag == "Terrain"){
+            SceneManager.LoadScene(level);
+        }
     }
 
     private bool IsGrounded()

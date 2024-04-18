@@ -15,6 +15,7 @@ TagManager:
   - ExitBlue
   - TrackingObject
   - Actors
+  - Terrain
   layers:
   - Default
   - TransparentFX
