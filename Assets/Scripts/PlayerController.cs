@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public float lowestJump;
     public float rayDistance;
     private int level = 0;
+    private bool moveLeft = false;
+    private bool moveRight = false;
+    private bool isJumping = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +35,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Backspace))
         {
@@ -43,40 +45,48 @@ public class PlayerController : MonoBehaviour
         if (isPlayable)
         {
             isGrounded = IsGrounded();
-            if (Input.GetKey(KeyCode.A))
+            moveLeft = Input.GetKey(KeyCode.A);
+            moveRight = Input.GetKey(KeyCode.D);
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            isJumping = true;
+        }
+        if (!isGrounded)
+        {
+            boxCollider.material = originalMaterial;
+        }
+        else
+        {
+            boxCollider.material = null;
+        }
+    }
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (isPlayable)
+        {
+            if (moveLeft)
             {
                 rb.AddForce(-Vector3.right * speed);
             }
             // Control right movement
-            if (Input.GetKey(KeyCode.D))
+            if (moveRight)
             {
 
                 rb.AddForce(Vector3.right * speed);
             }
-
+            // ControlJumpm
+            if (isJumping)
+            {
+                rb.velocity = (Vector3.up * jumpForce);
+                isJumping = false;
+            }
             if (rb.velocity.magnitude > maxSpeed)
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
             }
-
-            // ControlJumpm
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            {
-                rb.velocity = (Vector3.up * jumpForce) ;
-            }
-            if (!isGrounded)
-            {
-                boxCollider.material = originalMaterial;
-            }
-            else
-            {
-                boxCollider.material = null;
-            }
-            if (transform.position.y < 8){
-                SceneManager.LoadScene(level);
-            }
         }
-
         
     }
 
