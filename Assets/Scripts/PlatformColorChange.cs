@@ -6,10 +6,14 @@ public class PlatformColorChange : MonoBehaviour
 {
 
     public GameObject[] platform;
+    public Material[] colors;
+    private string[] mask = new string[3];
     // Start is called before the first frame update
     void Start()
     {
-        
+        mask[0] = "RedPlat";
+        mask[1] = "BluePlat";
+        mask[2] = "YellowPlat";
     }
 
     // Update is called once per frame
@@ -27,12 +31,14 @@ public class PlatformColorChange : MonoBehaviour
         {
             for (int i = 0; i < platform.Length; i++)
             {
-                
-                if (collider.collider.GetComponent<Renderer>().material.color == Color.red){
-                    Debug.Log(collider.collider.GetComponent<Renderer>().material.color.ToString());
+                for (int j = 0; j < colors.Length; j++)
+                {
+                    if (collider.collider.GetComponent<Renderer>().material.color == colors[j].color)
+                    {
+                        platform[i].GetComponent<Renderer>().material.color = colors[j].color;
+                        platform[i].gameObject.layer = LayerMask.NameToLayer(mask[j]);
+                    }
                 }
-                platform[i].GetComponent<Renderer>().material.color = collider.collider.GetComponent<Renderer>().material.color;
-
             }
         }
     }

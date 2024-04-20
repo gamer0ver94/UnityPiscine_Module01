@@ -17,13 +17,14 @@ public class PlayerController : MonoBehaviour
     private PhysicMaterial originalMaterial;
     public float lowestJump;
     public float rayDistance;
-    private int level = 0;
+    private int level;
     private bool moveLeft = false;
     private bool moveRight = false;
     private bool isJumping = false;
     // Start is called before the first frame update
     void Start()
     {
+        level = SceneManager.GetActiveScene().buildIndex;
         rb = GetComponent<Rigidbody>();
         GameObject switchSystemObj = GameObject.FindGameObjectWithTag("SwitchSystem");
         boxCollider = GetComponent<BoxCollider>();
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(level);
         if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Backspace))
         {
             SceneManager.LoadScene(level);
@@ -88,10 +90,6 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector3.up * jumpForce);
                 isJumping = false;
             }
-            // if (rb.velocity.magnitude > maxSpeed)
-            // {
-            //     rb.velocity = rb.velocity.normalized * maxSpeed;
-            // }
         }
         else{
             isJumping = false;
@@ -107,19 +105,16 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        Vector3 leftSide = new Vector3(transform.position.x - boxCollider.bounds.size.x / 2, transform.position.y, transform.position.z - boxCollider.bounds.size.z / 2);
-        Vector3 rightSide = new Vector3(transform.position.x + boxCollider.bounds.size.x / 2, transform.position.y, transform.position.z - boxCollider.bounds.size.z / 2);
-        Vector3 leftSideDeep = new Vector3(transform.position.x - boxCollider.bounds.size.x / 2, transform.position.y, transform.position.z + boxCollider.bounds.size.z / 2);
-        Vector3 rightSideDeep = new Vector3(transform.position.x + boxCollider.bounds.size.x / 2, transform.position.y, transform.position.z + boxCollider.bounds.size.z / 2);
-        if (Physics.Raycast(leftSide, Vector3.down * rayDistance, rayDistance) || Physics.Raycast(rightSide, Vector3.down * rayDistance, rayDistance) || Physics.Raycast(leftSideDeep, Vector3.down * rayDistance, rayDistance) || Physics.Raycast(rightSideDeep, Vector3.down * rayDistance, rayDistance)
+        Vector3 leftSide = new Vector3(transform.position.x - boxCollider.bounds.size.x / 2, transform.position.y - boxCollider.bounds.size.y / 2 + 0.05f, transform.position.z - boxCollider.bounds.size.z / 2);
+        Vector3 rightSide = new Vector3(transform.position.x + boxCollider.bounds.size.x / 2, transform.position.y - boxCollider.bounds.size.y / 2 + 0.05f, transform.position.z - boxCollider.bounds.size.z / 2);
+        Vector3 leftSideDeep = new Vector3(transform.position.x - boxCollider.bounds.size.x / 2, transform.position.y - boxCollider.bounds.size.y / 2 + 0.05f, transform.position.z + boxCollider.bounds.size.z / 2);
+        Vector3 rightSideDeep = new Vector3(transform.position.x + boxCollider.bounds.size.x / 2, transform.position.y - boxCollider.bounds.size.y / 2 + 0.05f, transform.position.z + boxCollider.bounds.size.z / 2);
+        if (Physics.Raycast(leftSide, Vector3.down, rayDistance) || Physics.Raycast(rightSide, Vector3.down, rayDistance) || Physics.Raycast(leftSideDeep, Vector3.down, rayDistance) || Physics.Raycast(rightSideDeep, Vector3.down, rayDistance)
         )
         {
-            
-           // Debug.Log("grounded");
             return true;
         }
         else {
-            //Debug.Log("not grounded");
             return false;
         }
     }
@@ -129,10 +124,10 @@ public class PlayerController : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Vector3 direction = Vector3.down * rayDistance;
-            Vector3 leftSide = new Vector3(transform.position.x - boxCollider.bounds.size.x / 2, transform.position.y, transform.position.z - boxCollider.bounds.size.z / 2);
-            Vector3 rightSide = new Vector3(transform.position.x + boxCollider.bounds.size.x / 2, transform.position.y, transform.position.z - boxCollider.bounds.size.z / 2);
-            Vector3 leftSideDeep = new Vector3(transform.position.x - boxCollider.bounds.size.x / 2, transform.position.y, transform.position.z + boxCollider.bounds.size.z / 2);
-            Vector3 rightSideDeep = new Vector3(transform.position.x + boxCollider.bounds.size.x / 2, transform.position.y, transform.position.z + boxCollider.bounds.size.z / 2);
+            Vector3 leftSide = new Vector3(transform.position.x - boxCollider.bounds.size.x / 2, transform.position.y - boxCollider.bounds.size.y / 2, transform.position.z - boxCollider.bounds.size.z / 2);
+            Vector3 rightSide = new Vector3(transform.position.x + boxCollider.bounds.size.x / 2, transform.position.y - boxCollider.bounds.size.y / 2, transform.position.z - boxCollider.bounds.size.z / 2);
+            Vector3 leftSideDeep = new Vector3(transform.position.x - boxCollider.bounds.size.x / 2, transform.position.y - boxCollider.bounds.size.y / 2, transform.position.z + boxCollider.bounds.size.z / 2);
+            Vector3 rightSideDeep = new Vector3(transform.position.x + boxCollider.bounds.size.x / 2, transform.position.y - boxCollider.bounds.size.y / 2, transform.position.z + boxCollider.bounds.size.z / 2);
             Gizmos.DrawRay(leftSide, direction);
             Gizmos.DrawRay(rightSide, direction);
             Gizmos.DrawRay(leftSideDeep, direction);

@@ -126,7 +126,7 @@ MonoBehaviour:
   jumpForce: 400
   isPlayable: 1
   lowestJump: 1
-  rayDistance: 1.51
+  rayDistance: 0.06
 --- !u!54 &4061526448223457663
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,5 +152,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 0

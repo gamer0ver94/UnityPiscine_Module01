@@ -153,4 +153,4 @@ MonoBehaviour:
   jumpForce: 700
   isPlayable: 1
   lowestJump: 1
-  rayDistance: 1.11
+  rayDistance: 0.08

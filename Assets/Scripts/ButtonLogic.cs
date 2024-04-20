@@ -5,7 +5,7 @@ using UnityEngine;
 public class ButtonLogic : MonoBehaviour
 {
     public float force;
-    public GameObject[] door;
+    public GameObject[] door = null;
     private Vector3[] doorOriginalSize;
     private Vector3 initialPostion;
     public float actionTime;
@@ -40,12 +40,15 @@ public class ButtonLogic : MonoBehaviour
                         door[i].transform.localScale = new Vector3(0, 0, 0);
                         door[i].GetComponent<BoxCollider>().enabled = false;
                     }
-                    if (setTimer && actionTime < 0)
+                    if (setTimer && actionTime <= 0)
                     {
+                        for (int j = 0; j < door.Length; j++)
+                        {
+                            door[j].GetComponent<BoxCollider>().enabled = true;
+                        }
                         setTimer = false;
                         actionTime = originalTimer;
                         transform.position = initialPostion;
-                        door[i].GetComponent<BoxCollider>().enabled = true;
                     }
                     if (!setTimer && door[i].transform.localScale.y < doorOriginalSize[i].y)
                     {

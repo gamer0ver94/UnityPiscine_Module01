@@ -125,7 +125,7 @@ MonoBehaviour:
   horizontalMove: 1
   rightDistance: 1.15
   leftDistance: 6.19
-  speed: 4.09
+  speed: 2
 --- !u!54 &4643909658663153433
 Rigidbody:
   m_ObjectHideFlags: 0

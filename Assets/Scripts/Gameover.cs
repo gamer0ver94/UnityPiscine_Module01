@@ -22,7 +22,7 @@ public class Gameover : MonoBehaviour
         yellow = GameObject.FindGameObjectWithTag("ExitYellow").GetComponent<GamePlayObjective>().validation;
         blue = GameObject.FindGameObjectWithTag("ExitBlue").GetComponent<GamePlayObjective>().validation;
         if (red && blue && yellow) {
-            SceneManager.LoadScene("Level02");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
