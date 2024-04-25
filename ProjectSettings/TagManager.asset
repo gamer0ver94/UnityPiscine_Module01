@@ -16,11 +16,12 @@ TagManager:
   - TrackingObject
   - Actors
   - Terrain
+  - ShotCun
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Hole
   - Water
   - UI
   - Claire
